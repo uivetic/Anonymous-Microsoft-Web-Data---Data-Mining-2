@@ -52,6 +52,7 @@ python scripts/01_parse.py        # DST -> data/interim/
 python scripts/02_eda.py          # statistike i grafici -> output/
 python scripts/03_preprocess.py   # binarna matrica -> data/processed/
 python scripts/04_features.py     # skupovi atributa A0–A5
+python scripts/05_embeddings.py   # SVD/t-SNE 2D/3D nad svim korisnicima
 pytest
 ```
 

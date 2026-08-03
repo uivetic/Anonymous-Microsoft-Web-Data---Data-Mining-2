@@ -21,7 +21,8 @@ RESULTS_REGISTRY = TABLES_DIR / "results.csv"
 
 RANDOM_STATE = 42
 
-SAMPLE_SIZE = 8000
+TSNE_PERPLEXITY = 30
+# Za O(n^2) algoritme (hijerarhijsko, ROCK) po potrebi kasnije.
 ROCK_SAMPLE_SIZE = 3000
 
 MODEL_SOURCE = "train"
