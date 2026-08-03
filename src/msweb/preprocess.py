@@ -1,3 +1,5 @@
+from typing import cast
+
 import numpy as np
 import pandas as pd
 from scipy import sparse
@@ -12,11 +14,11 @@ def select_model_visits(
     min_user_visits: int = MIN_USER_VISITS,
 ) -> pd.DataFrame:
     model_users = users.loc[users["source"] == source, "user"]
-    selected = visits[visits["user"].isin(model_users)]
+    selected = cast(pd.DataFrame, visits.loc[visits["user"].isin(model_users)].copy())
 
     per_user = selected.groupby("user").size()
     keep_users = per_user[per_user >= min_user_visits].index
-    return selected[selected["user"].isin(keep_users)].copy()
+    return cast(pd.DataFrame, selected.loc[selected["user"].isin(keep_users)].copy())
 
 
 def build_binary_matrix(
@@ -75,7 +77,9 @@ def preprocess_summary(
     min_user_visits: int = MIN_USER_VISITS,
 ) -> pd.DataFrame:
     before_users = users.loc[users["source"] == source, "user"]
-    before_visits = visits[visits["user"].isin(before_users)]
+    before_visits = cast(
+        pd.DataFrame, visits.loc[visits["user"].isin(before_users)].copy()
+    )
     return pd.DataFrame(
         [
             {

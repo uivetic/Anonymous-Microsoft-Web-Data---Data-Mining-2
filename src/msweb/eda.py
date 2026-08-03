@@ -1,3 +1,5 @@
+from typing import cast
+
 import numpy as np
 import pandas as pd
 
@@ -67,10 +69,11 @@ def apply_filters(
     # pa se prag za korisnike primenjuje tek na preostale posete.
     per_vroot = visits.groupby("vroot_id").size()
     keep = per_vroot[per_vroot >= min_vroot_visits].index
-    kept = visits[visits["vroot_id"].isin(keep)]
+    kept = cast(pd.DataFrame, visits.loc[visits["vroot_id"].isin(keep)].copy())
 
     per_user = kept.groupby("user").size()
-    return kept[kept["user"].isin(per_user[per_user >= min_user_visits].index)]
+    keep_users = per_user[per_user >= min_user_visits].index
+    return cast(pd.DataFrame, kept.loc[kept["user"].isin(keep_users)].copy())
 
 
 def threshold_grid(

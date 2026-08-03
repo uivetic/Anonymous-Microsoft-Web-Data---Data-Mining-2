@@ -27,11 +27,22 @@ ROCK_SAMPLE_SIZE = 3000
 MODEL_SOURCE = "train"
 MIN_USER_VISITS = 2
 
+FEATURE_SETS_DIR = PROCESSED_DIR / "feature_sets"
+
+# Pragovi skupova atributa
+A1_MIN_VROOT_USERS = 10
+A2_TOP_N = 50
+A3_MIN_VARIANCE = 0.01
+A4_MAX_PHI = 0.9
+A5_VARIANCE_RATIO = 0.90
+A5_MAX_COMPONENTS = 150
+
 
 def ensure_dirs() -> None:
     for path in (
         INTERIM_DIR,
         PROCESSED_DIR,
+        FEATURE_SETS_DIR,
         FIGURES_DIR,
         TABLES_DIR,
         MODELS_DIR,
