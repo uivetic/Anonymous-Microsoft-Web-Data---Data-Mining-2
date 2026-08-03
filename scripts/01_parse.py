@@ -1,5 +1,18 @@
-from msweb.config import INTERIM_DIR, ensure_dirs
-from msweb.loading import load_both
+import _bootstrap  # noqa: F401
+
+import sys
+
+try:
+    from msweb.config import INTERIM_DIR, ensure_dirs
+    from msweb.loading import load_both
+except ModuleNotFoundError:
+    sys.exit(
+        "Nedostaje zavisnost ili paket msweb.\n"
+        "Iz korena projekta pokreni:\n"
+        "  source .venv/bin/activate\n"
+        "  pip install -r requirements.txt\n"
+        "zatim: python scripts/01_parse.py"
+    )
 
 
 def main() -> None:

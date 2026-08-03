@@ -1,3 +1,7 @@
+import _bootstrap  # noqa: F401
+
+import sys
+
 import matplotlib
 
 matplotlib.use("Agg")
@@ -7,14 +11,23 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from msweb.config import FIGURES_DIR, INTERIM_DIR, TABLES_DIR, ensure_dirs
-from msweb.eda import (
-    basic_stats,
-    distribution_summary,
-    threshold_grid,
-    vroot_jaccard,
-    vroot_popularity,
-)
+try:
+    from msweb.config import FIGURES_DIR, INTERIM_DIR, TABLES_DIR, ensure_dirs
+    from msweb.eda import (
+        basic_stats,
+        distribution_summary,
+        threshold_grid,
+        vroot_jaccard,
+        vroot_popularity,
+    )
+except ModuleNotFoundError:
+    sys.exit(
+        "Nedostaje zavisnost ili paket msweb.\n"
+        "Iz korena projekta pokreni:\n"
+        "  source .venv/bin/activate\n"
+        "  pip install -r requirements.txt\n"
+        "zatim: python scripts/02_eda.py"
+    )
 
 VROOT_OPTIONS = [1, 5, 10, 20, 30, 50, 100, 200]
 USER_OPTIONS = [1, 2, 3, 5]

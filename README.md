@@ -31,25 +31,27 @@ Podaci su u retkom ASCII formatu „DST": linije `A` opisuju oblasti sajta (vroo
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-pip install -e .
+pip install -e .   # opciono; potrebno za `import msweb` van skripti/svesaka
 ```
 
-Instalacija u režimu `-e` znači da je paket `msweb` dostupan svuda u okruženju, pa ni skripte
-ni sveske ne moraju da podešavaju `sys.path`.
-
-Provera da okruženje radi:
+Pre pokretanja uvek aktiviraj okruženje. Bez toga `python3` ide na sistemski Python
+gde nema `pandas`/`scipy` iz ovog projekta.
 
 ```bash
-python -c "from msweb.config import ROOT, RAW_TRAIN; print(ROOT, RAW_TRAIN.exists())"
+source .venv/bin/activate
+which python   # treba da pokazuje .../.venv/bin/python
 ```
 
 ## Reprodukcija
 
-Skripte se pokreću redom, iz korena projekta:
+Skripte se pokreću redom, iz korena projekta, sa aktiviranim `.venv`:
 
 ```bash
-python scripts/01_parse.py   # DST -> data/interim/{vroots,users,visits}.csv
-pytest                       # provere invarijanti
+source .venv/bin/activate
+python scripts/01_parse.py        # DST -> data/interim/
+python scripts/02_eda.py          # statistike i grafici -> output/
+python scripts/03_preprocess.py   # binarna matrica -> data/processed/
+pytest
 ```
 
 ## Struktura projekta
