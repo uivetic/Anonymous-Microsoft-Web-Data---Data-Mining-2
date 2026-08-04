@@ -67,6 +67,8 @@ def intra_inter_ratio(
         return float("nan")
     X = np.asarray(X)[mask]
     y = labels[mask]
+    if metric == "jaccard":
+        X = X.astype(bool)
     labs = np.unique(y)
     if len(labs) < 2:
         return float("nan")
@@ -124,6 +126,8 @@ def evaluate_clustering(
 
     Xc = X[mask]
     yc = labels[mask]
+    if metric == "jaccard":
+        Xc = Xc.astype(bool)
 
     try:
         # Za velike skupove silueta se uzorkuje (posebno skupo za jaccard).

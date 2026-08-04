@@ -45,6 +45,10 @@ KMEANS_K_MAX = 60
 KMEANS_SELECTED_K = 25
 KMEANS_N_INIT = 10
 
+CLARANS_K = 5
+CLARANS_NUM_LOCAL = 5
+CLARANS_MAX_ATTEMPTS = 100
+
 
 def ensure_dirs() -> None:
     for path in (
