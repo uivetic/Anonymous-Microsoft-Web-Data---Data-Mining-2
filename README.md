@@ -54,6 +54,7 @@ python scripts/03_preprocess.py   # binarna matrica -> data/processed/
 python scripts/04_features.py     # skupovi atributa A0–A5
 python scripts/05_embeddings.py   # SVD/t-SNE 2D/3D nad svim korisnicima
 python scripts/06_eval_smoke.py   # provera modula evaluacije
+python scripts/07_kmeans.py       # K-sredine + lakat + izbor k (A0–A5)
 pytest
 ```
 

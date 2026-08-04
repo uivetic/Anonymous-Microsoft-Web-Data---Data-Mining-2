@@ -38,6 +38,13 @@ A4_MAX_PHI = 0.9
 A5_VARIANCE_RATIO = 0.90
 A5_MAX_COMPONENTS = 150
 
+FEATURE_SET_NAMES = ("A0", "A1", "A2", "A3", "A4", "A5")
+
+KMEANS_K_MIN = 2
+KMEANS_K_MAX = 60
+KMEANS_SELECTED_K = 25
+KMEANS_N_INIT = 10
+
 
 def ensure_dirs() -> None:
     for path in (
